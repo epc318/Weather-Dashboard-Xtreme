@@ -15,9 +15,30 @@ let currentForecast = function(location, data) {
     humidity.textContent = data.present.humidity + '%';
 };
 
+
+
+let cityLatLong = function(location, data) {
+    let lat = data.coord.lat;
+    let long = data.coord.long;
+    let apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='
+    +long+'&exclude=minutely,hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b';
+
+    fetch(apiURL).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                currentForecast(location, data);
+            })
+        } 
+        else {
+            console.log('The city you searched does not exist, please try again.');
+        }
+    })
+};
+
 let submitAPI = function(event) {
     event.preventDefault();
-    fetch(apiUrl).then(function(response) {
+    let location = document.querySelector("#location").value;
+    fetch(apiURL).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
             cityLatLong(location, data);
@@ -30,22 +51,3 @@ let submitAPI = function(event) {
 };
 
 document.querySelector('#searchBtn').addEventListener('click', submitAPI);
-
-
-let cityLatLong = function(location, data) {
-    let lat = data.coord.lat;
-    let long = data.coord.long;
-    let apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='
-    +long+'&exclude=minutely,hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b';
-
-    fetch(apiUrl).then(function(response) {
-        if(response.ok) {
-            response.json().then(function(data) {
-                currentForecast(location, data);
-            })
-        } 
-        else {
-            console.log('The city you searched does not exist, please try again.');
-        }
-    })
-};
