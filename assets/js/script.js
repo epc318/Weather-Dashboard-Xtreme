@@ -1,7 +1,7 @@
 let currentForecast = function(location, data) {
     let city = document.querySelector('#city');
     let temp = document.querySelector('#temp');
-    let wind = document.querySelector('#wind');
+    let wind = document.querySelector('#windSpeed');
     let humidity = document.querySelector('#humid');
 
     city.textContent = location;
@@ -24,7 +24,7 @@ let submitAPI = function(event) {
         }
     }); 
 };
-document.querySelector('#searchbtn').addEventListener('click', function() {
+document.querySelector('#searchBtn').addEventListener('click', function() {
     let input = document.querySelector('#city').value;
     input.textContent = "PLACEHOLDER";
     formSubmit();
