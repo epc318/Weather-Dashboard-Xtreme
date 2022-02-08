@@ -31,6 +31,34 @@ section {
     flex-direction: column;
     justify-content: flex-start;
 }
+/* Search Area stlyes */
+#search {
+    margin: 30px 100px;
+}
+#search input[type=text] {
+    color: blue;
+    font-size: 18px;
+    width: 100%;
+    border: 2px solid black;
+}
+#search input[type=text]:focus {
+    outline: none;
+}
+#search h2 {
+    font-size: 24px;
+    color: peachpuff;
+}
+#search input[type=submit]:hover {
+    background-color: blue;
+    cursor: pointer;
+}
+#search div {
+    display: flex;
+    flex-direction: column;
+}
+#input {
+    border-bottom: 4px solid black;
+}
 
 
 
