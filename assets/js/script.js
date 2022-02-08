@@ -4,19 +4,23 @@ let currentForecast = function(location, data) {
     let wind = document.querySelector('#windSpeed');
     let humidity = document.querySelector('#humid');
 
+    let inset = document.querySelector('#inset');
+    let insetID = data.current.weather[0].inset;
+    let insetURL = 'https://openweathermap.org/img/w/'+insetID+'.png';
+
     city.textContent = location;
-    temp.textContent = data.main.temp + '°F';
-    wind.textContent = data.wind.speed + 'mph';
-    humidity.textContent = data.main.humidity + '%';
+    inset.src = insetURL
+    temp.textContent = data.present.temp + '°F';
+    wind.textContent = data.present.speed + 'mph';
+    humidity.textContent = data.present.humidity + '%';
 };
 
 let submitAPI = function(event) {
     event.preventDefault();
-    let apiUrl ='http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bc541e0acdc6372acb78d3865f34ac3b';
     fetch(apiUrl).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
-            currentForecast(location, data);
+            cityLatLong(location, data);
             })
         }
         else {
@@ -24,8 +28,24 @@ let submitAPI = function(event) {
         }
     }); 
 };
-document.querySelector('#searchBtn').addEventListener('click', function() {
-    let input = document.querySelector('#city').value;
-    input.textContent = "PLACEHOLDER";
-    formSubmit();
-});
+
+document.querySelector('#searchBtn').addEventListener('click', submitAPI);
+
+
+let cityLatLong = function(location, data) {
+    let lat = data.coord.lat;
+    let long = data.coord.long;
+    let apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='
+    +long+'&exclude=minutely,hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b';
+
+    fetch(apiUrl).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                currentForecast(location, data);
+            })
+        } 
+        else {
+            console.log('The city you searched does not exist, please try again.');
+        }
+    })
+};
