@@ -1,3 +1,15 @@
+let getCurrentForecast = function(data, i) {
+    let projTemp = document.querySelectorAll('#projectedTemp');
+    let recentTemp = projTemp[projTemp.length - 1];
+    recentTemp.textContent = data.daily[i].temp.day + "°F";
+    let projWind = document.querySelectorAll("#projectedWind");
+    let recentWind = projWind[projWind.length - 1];
+    recentWind.textContent = data.daily[i].wind_speed + "mph";
+    let projHum = document.querySelectorAll("#projectedHum");
+    let recentHum = projHum[projHum.length - 1];
+    recentHum.textContent = data.daily[i].humidity + "%";
+};
+
 let currentForecast = function(location, data) {
     let city = document.querySelector('#city');
     let temp = document.querySelector('#temp');
