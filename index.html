@@ -13,6 +13,24 @@
     <header>
         <h1>Weather Dashboard X-treme</h1>
     </header>
+        <main>
+            <section id="search">
+                <div id="input" >
+                    <h3>Search for a City:</h3>
+                    <form id="">
+                        <input type="text" id="location"><br>
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+                <div id="history"></div>
+            </section>
+            <section id="results"></section>
+    </main>
+
+
+    
+   <!-- commenting out for now
+       
     <main>
         <section id="search">
             <div id="input">
@@ -23,6 +41,7 @@
             <div id="history">
             </div>
         </section>
+
         <section id="results">
             <div id="latestForecast">
                 <div class = "weatherIMG">
@@ -30,11 +49,12 @@
                     <img id="inset" src="" alt=""></img>
                 </div>
                 <h3 id="currentDate"> Feb 3, 2022 </h3>
-                <h5>Current Temperature: <span id="temp"></span></h5>
-                <h5>Current Wind Speed: <span id="windSpeed"></span></h5>
-                <h5>Current Humidity(%): <span id="humid"></span></h5>
-                <h5>Current UV Index: <span id="uvIndex"> 3.7></span></h5>
+                <h5>Temperature: <span id="temp"></span></h5>
+                <h5>Wind: <span id="windSpeed"></span></h5>
+                <h5>Humidity(%): <span id="humid"></span></h5>
+                <h5 id="uvIndex"> 3.7 </h5>
             </div>
+
             <div id="fiveDayForecast">
                 <h2>5-Day Forecast</h2>
                 <div id="forecastCard">
@@ -43,24 +63,28 @@
                     <h6 id="expectedWind">14.2 mph</h3>
                     <h6 id="expectedHumid">78%</h3>
                 </div>
+
                 <div id="forecastCard">
                     <h4 id="futureDate">Feb 7, 2022</h4>
                     <h6 id="expectedTemp">78 deg</h3>
                     <h6 id="expectedWind">14.2 mph</h3>
                     <h6 id="expectedHumid">78%</h3>
                 </div>
+
                 <div id="forecastCard">
                     <h4 id="futureDate">Feb 7, 2022</h4>
                     <h6 id="expectedTemp">78 deg</h3>
                     <h6 id="expectedWind">14.2 mph</h3>
                     <h6 id="expectedHumid">78%</h3>
                 </div>
+
                 <div id="forecastCard">
                     <h4 id="futureDate">Feb 7, 2022</h4>
                     <h6 id="expectedTemp">78 deg</h3>
                     <h6 id="expectedWind">14.2 mph</h3>
                     <h6 id="expectedHumid">78%</h3>
                 </div>
+
                 <div id="forecastCard">
                     <h4 id="futureDate">Feb 7, 2022</h4>
                     <h6 id="expectedTemp">78 deg</h3>
