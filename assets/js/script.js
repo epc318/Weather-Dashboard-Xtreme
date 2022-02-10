@@ -10,6 +10,49 @@ let getCurrentForecast = function(data, i) {
     recentHum.textContent = data.daily[i].humidity + "%";
 };
 
+let getProjectedForecast = function(data) {
+    let ask = document.querySelector('#projectedForecast');
+    if(ask) {
+        ask.remove();
+        getProjectedForecast(data);
+    }
+    else {
+        let results = document.querySelector('#results');
+        let forecastInfo = document.createElement('div');
+        forecastInfo.id= 'projeectedForecast';
+        results.appendChild(forecastInfo);   
+        for(let i = 0; i < 5; i++) {
+            let weatherByDay = document.createElement('div');
+            weatherByDay.classList = '';
+            forecastInfo.appendChild(weatherByDay);
+
+            let nextWeek = document.createElement('h3');
+            nextWeek.id = 'next5Days';
+            nextWeek.textContent = 'Wednesday, February' + (9 + i);
+            forecastInfo.appendChild(nextWeek);
+                for(let j = 0; j < 3; j++) {
+                let h5 = document.createElement('h4');
+                let projectedInfo = document.createElement('span');
+                if(j < 1) {
+                    h5.textContent =  'Temperature: ';
+                    projectedInfo.id = 'projectedTemp';
+                } 
+                else if(j > 1) {
+                    h5.textContent = 'Wind Speed: ';
+                    projectedInfo.id = 'projectedWind';
+                } 
+                else {
+                    h5.textContent = 'Relative Humidity (%): ';
+                    projectedInfo.id = 'projectedHum';
+                }
+                forecastInfo.appendChild(h5);
+                h5.appendChild(projectedInfo);
+             };
+             getCurrentForecast(data, i);
+        };
+    }       
+};
+
 let currentForecast = function(location, data) {
     let city = document.querySelector('#city');
     let temp = document.querySelector('#temp');
