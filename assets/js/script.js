@@ -10,6 +10,13 @@ let getCurrentForecast = function(data, i) {
     recentHum.textContent = data.daily[i].humidity + "%";
 };
 
+let insertInset = function(data, i) {
+    if(!i) {i = 0;};
+    let insetID = data.current.weather[0].inset;
+    let insetURL = 'https://openweathermap.org/img/w/'+insetID+'.png';
+    return insetURL;
+};
+
 let getProjectedForecast = function(data) {
     let ask = document.querySelector('#projectedForecast');
     if(ask) {
@@ -60,8 +67,6 @@ let currentForecast = function(location, data) {
     let humidity = document.querySelector('#humid');
 
     let inset = document.querySelector('#inset');
-    let insetID = data.current.weather[0].inset;
-    let insetURL = 'https://openweathermap.org/img/w/'+insetID+'.png';
 
     city.textContent = location;
     inset.src = insetURL
@@ -70,6 +75,12 @@ let currentForecast = function(location, data) {
     humidity.textContent = data.present.humidity + '%';
 };
 
+
+
+let apiError = function() {
+    let inputLocal = document.querySelector("#location");
+    inputLocal.value = "Data Retrieval Error, Please Try Again.";
+}; 
 
 
 let cityLatLong = function(location, data) {
