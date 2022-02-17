@@ -12,8 +12,8 @@ let getCurrentForecast = function(data, i) {
 
 let insertInset = function(data, i) {
     if(!i) {i = 0;};
-    let insetID = data.current.weather[0].inset;
-    let insetURL = 'https://openweathermap.org/img/w/'+insetID+'.png';
+    let insetID = data.daily[i].weather[0].inset;
+    let insetURL = 'https://openweathermap.org/img/w/' + insetID + '.png';
     return insetURL;
 };
 
@@ -35,11 +35,11 @@ let getProjectedForecast = function(data) {
 
             let nextWeek = document.createElement('h3');
             nextWeek.id = 'next5Days';
-            nextWeek.textContent = 'Wednesday, February' + (9 + i).format('dddd, MMMM Do YYYY,');
+            nextWeek.textContent = moment().add(i + 1).format('dddd, MMMM Do YYYY,');
             forecastInfo.appendChild(nextWeek);
 
             let weatherInset = document.createElement("img");
-            weatherInset.src = addIcon(data, i);
+            weatherInset.src = insertInset(data, i);
             forecastInfo.appendChild(weatherInset);
                 for(let j = 0; j < 3; j++) {
                 let h5 = document.createElement('h4');
@@ -108,17 +108,17 @@ let getForecastSections = function(data) {
 
 let currentForecast = function(location, data) {
     let city = document.querySelector('#city');
-    let temp = document.querySelector('#temp');
-    let wind = document.querySelector('#windSpeed');
-    let humidity = document.querySelector('#humid');
+    let temp = document.querySelector('#projectedTemp');
+    let wind = document.querySelector('#projectedWind');
+    let humidity = document.querySelector('#projectedHum');
 
     let inset = document.querySelector('#inset');
 
     //city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
-    weatherInset.src = insertInset(data);
-    temp.textContent = data.present.temp + '°F';
-    wind.textContent = data.present.speed + ' mph';
-    humidity.textContent = data.present.humidity + '%';
+    //inset.src = insertInset(data);
+    //temp.textContent = data.present.temp + '°F';
+    //wind.textContent = data.present.speed + ' mph';
+    //humidity.textContent = data.present.humidity + '%';
 };
 
 
@@ -139,7 +139,7 @@ let cityLatLong = function(location, data) {
         if(response.ok) {
             response.json().then(function(data) {
                 currentForecast(location, data);
-                getProjectForecast(data);
+                getProjectedForecast(data);
             })
         }
         else {
