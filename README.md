@@ -4,7 +4,7 @@
 A simple application that allows the user to check the current weather, as well as the 5-day forecast, for any city.
 
 ## Purpose
-Many people in this day and age relay heavily on on our modern ability to accurately and easily predict the weather. Whether you are a family man planning your weekend vacation or an ultra-runner mapping out this afternoon's workout, people everywhere plan their activities based on the weather in many circumstances. Weather Dashboard X-treme allows anyone to easily look up the current and project weather of any location in the OpenWeather API database, allowing them to simply and safely plan any activities that relay on a particular forcast.
+Many people in this day and age relay heavily on on our modern ability to accurately and easily predict the weather. Whether you are a family man planning your weekend vacation or an ultra-runner mapping out this afternoon's workout, people everywhere plan their activities based on the weather in many circumstances. Weather Dashboard X-treme allows anyone to easily look up the current and projected weather of any location in the OpenWeather API database, allowing them to simply and safely plan any activities that relay on a particular forecast.
 
 ## Table of Contents
 - [Built With](#languages)
@@ -18,7 +18,7 @@ Many people in this day and age relay heavily on on our modern ability to accura
 * HTML
 * CSS
 * JavaScript
-* OpenWeather API service
+* [OpenWeather Api Service](https://openweathermap.org/)
 
 ## URL
 Visit the application [HERE](https://epc318.github.io/Weather-Dashboard-Xtreme/)
