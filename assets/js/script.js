@@ -35,7 +35,7 @@ let getProjectedForecast = function(data) {
 
             let nextWeek = document.createElement('h3');
             nextWeek.id = 'next5Days';
-            nextWeek.textContent = 'Wednesday, February' + (9 + i);
+            nextWeek.textContent = 'Wednesday, February' + (9 + i).format('dddd, MMMM Do YYYY,');
             forecastInfo.appendChild(nextWeek);
                 for(let j = 0; j < 3; j++) {
                 let h5 = document.createElement('h4');
@@ -74,8 +74,8 @@ let getForecastSections = function(data) {
     sectionTitle.id = 'city';
     let weatherInset = document.createElement('img');
     weatherIcon.id = 'inset';
-    titleDiv.appendChild(sectionTitle);
-    titleDiv.appendChild(weatherInset);
+    sectionHeader.appendChild(sectionTitle);
+    sectionHeader.appendChild(weatherInset);
 
     let todaysDate = document.createElement('h4');
     todaysDate.id = 'todaysDate';
@@ -110,7 +110,7 @@ let currentForecast = function(location, data) {
 
     let inset = document.querySelector('#inset');
 
-    city.textContent = location;
+    city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
     inset.src = insertInset
     temp.textContent = data.present.temp + '°F';
     wind.textContent = data.present.speed + 'mph';
