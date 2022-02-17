@@ -39,7 +39,7 @@ let getProjectedForecast = function(data) {
             forecastInfo.appendChild(nextWeek);
                 for(let j = 0; j < 3; j++) {
                 let h5 = document.createElement('h4');
-                let projectedInfo = document.createElement('span');
+                let projectedInfo = document.createElement('div');
                 if(j < 1) {
                     h5.textContent =  'Temperature: ';
                     projectedInfo.id = 'projectedTemp';
@@ -58,6 +58,48 @@ let getProjectedForecast = function(data) {
              getCurrentForecast(data, i);
         };
     }       
+};
+
+let getForecastSections = function(data) {
+    let sectionDayCards = document.querySelector('#results');
+    let sectionTodaysForecast = document.createElement('div');
+    sectionTodaysForecast.id = 'todaysForecast';
+    sectionDayCards.appendChild(sectionTodaysForecast);
+
+    let sectionHeader = document.createElement('div');
+    sectionHeader.className = 'forecastInset';
+    sectionTodaysForecast.appendChild(sectionHeader);
+
+    let sectionTitle = document.createElement('h1');
+    sectionTitle.id = 'city';
+    let weatherInset = document.createElement('img');
+    weatherIcon.id = 'inset';
+    titleDiv.appendChild(sectionTitle);
+    titleDiv.appendChild(weatherInset);
+
+    let todaysDate = document.createElement('h4');
+    todaysDate.id = 'todaysDate';
+    todaysDate.textContent = moment().format('dddd, MMMM Do YYYY,');
+    sectionTodaysForecast.appendChild(todaysDate);
+
+        for(let i = 0; i < 4; i++) {
+            let h5 = document.createElement('h5');
+            let projectedInfo = document.createElement('div');
+                if(i < 1) {
+                    h5.textContent =  'Temperature: ';
+                    projectedInfo.id = 'projectedTemp';
+                } 
+                else if(i == 1) {
+                    h5.textContent = 'Wind Speed: ';
+                    projectedInfo.id = 'projectedWind';
+                }
+                else if(i == 2)  {
+                    h5.textContent = 'Relative Humidity (%): ';
+                    projectedInfo.id = 'projectedHum';
+                }
+            sectionTodaysForecast.appendChild(h5);
+            h5.appendChild(projectedInfo);
+        }
 };
 
 let currentForecast = function(location, data) {
