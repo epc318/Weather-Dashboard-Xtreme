@@ -57,7 +57,9 @@ section {
     flex-direction: column;
 }
 #input {
-    border-bottom: 4px solid black;
+    padding: 10px;
+    border: 5px solid goldenrod;
+
 }
 
 /*Todays Forecast styles*/
@@ -86,7 +88,7 @@ border: 10px solid goldenrod;
     border: 7px solid palegoldenrod;
     text-align: center;
 }
-#projectedForecast h4 {
+#projectedForecast h5 {
     color: purple;
     width: 100%;
     border: 3px solid palegoldenrod;

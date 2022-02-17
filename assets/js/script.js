@@ -36,14 +36,14 @@ let getProjectedForecast = function(data) {
 
             let nextWeek = document.createElement('h3');
             nextWeek.id = 'next5Days';
-            nextWeek.textContent = moment().add(i + 1,'days').format('dddd, MMMM Do YYYY');
+            nextWeek.textContent = moment().add(i + 1,'days').format('dddd, MMMM Do, YYYY');
             weatherByDay.appendChild(nextWeek);
 
             let weatherInset = document.createElement('img');
             weatherInset.src = insertInset(data, i);
             weatherByDay.appendChild(weatherInset);
                 for(let j = 0; j < 3; j++) {
-                let h5 = document.createElement('h4');
+                let h5 = document.createElement('h5');
                 let projectedInfo = document.createElement('div');
                 if(j < 1) {
                     h5.textContent =  'Temperature: ';
@@ -99,11 +99,11 @@ let getForecastSections = function(data) {
 
     let todaysDate = document.createElement('h4');
     todaysDate.id = 'currentDate';
-    todaysDate.textContent = moment().format('dddd, MMMM Do YYYY,');
+    todaysDate.textContent = moment().format('dddd, MMMM Do, YYYY');
     sectionTodaysForecast.appendChild(todaysDate);
 
         for(let i = 0; i < 4; i++) {
-            let h5 = document.createElement('h5');
+            let h5 = document.createElement('h4');
             let projectedInfo = document.createElement('div');
                 if(i < 1) {
                     h5.textContent =  'Temperature: ';
