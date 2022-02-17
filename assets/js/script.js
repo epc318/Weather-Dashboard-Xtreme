@@ -119,7 +119,7 @@ let currentForecast = function(location, data) {
 
 
 
-let apiError = function() {
+let fetchError = function() {
     let inputLocal = document.querySelector("#location");
     inputLocal.value = "Data Retrieval Error, Please Try Again.";
 }; 
@@ -135,27 +135,33 @@ let cityLatLong = function(location, data) {
         if(response.ok) {
             response.json().then(function(data) {
                 currentForecast(location, data);
+                getForecastSections(data);
             })
-        } 
+        }
         else {
-            console.log('The city you searched does not exist, please try again.');
+            fetchError();
         }
     })
 };
 
-let submitAPI = function(event) {
-    event.preventDefault();
-    let location = document.querySelector("#location").value;
-    fetch(apiURL).then(function(response) {
+let getStartupInfo = function(location) {
+    let apiURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=198d07e9a046131e4583b2665e1187a0";
+    fetch(apiURL2).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
             cityLatLong(location, data);
             })
         }
         else {
-            console.log('The city you searched does not exist, please try again.');
+            fetchError();
         }
     }); 
+}
+
+let submitAPI = function(event) {
+    event.preventDefault();
+    let location = document.querySelector("#location").value;
+    getStartupInfo(location);
 };
 
 document.querySelector('#searchBtn').addEventListener('click', submitAPI);
