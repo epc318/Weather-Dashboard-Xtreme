@@ -14,6 +14,7 @@ let insertInset = function(data, i) {
     if(!i) {i = 0;};
     let insetID = data.daily[i].weather[0].inset;
     let insetURL = 'https://openweathermap.org/img/w/' + insetID + '.png';
+
     return insetURL;
 };
 
@@ -36,11 +37,11 @@ let getProjectedForecast = function(data) {
             let nextWeek = document.createElement('h3');
             nextWeek.id = 'next5Days';
             nextWeek.textContent = moment().add(i + 1).format('dddd, MMMM Do YYYY,');
-            forecastInfo.appendChild(nextWeek);
+            weatherByDay.appendChild(nextWeek);
 
-            let weatherInset = document.createElement("img");
+            let weatherInset = document.createElement('img');
             weatherInset.src = insertInset(data, i);
-            forecastInfo.appendChild(weatherInset);
+            weatherByDay.appendChild(weatherInset);
                 for(let j = 0; j < 3; j++) {
                 let h5 = document.createElement('h4');
                 let projectedInfo = document.createElement('div');
@@ -64,6 +65,21 @@ let getProjectedForecast = function(data) {
     }       
 };
 
+let uvIndex = function(data) {
+    let uvIndex = data.current.uvIndex;
+    let index;
+        if(uvIndex < 3) {
+        index = 'fair';
+    }
+    else if(uvIndex > 5) {
+        index = 'beware';
+    }
+    else if(5 > uvIndex > 3){
+        index = 'sunny but doable';
+    }
+    return index;
+};
+
 let getForecastSections = function(data) {
     let sectionDayCards = document.querySelector('#results');
     let sectionTodaysForecast = document.createElement('div');
@@ -77,12 +93,12 @@ let getForecastSections = function(data) {
     let sectionTitle = document.createElement('h1');
     sectionTitle.id = 'city';
     let weatherInset = document.createElement('img');
-    weatherIcon.id = 'inset';
+    weatherInset.id = 'inset';
     sectionHeader.appendChild(sectionTitle);
     sectionHeader.appendChild(weatherInset);
 
     let todaysDate = document.createElement('h4');
-    todaysDate.id = 'todaysDate';
+    todaysDate.id = 'currentDate';
     todaysDate.textContent = moment().format('dddd, MMMM Do YYYY,');
     sectionTodaysForecast.appendChild(todaysDate);
 
@@ -101,24 +117,27 @@ let getForecastSections = function(data) {
                     h5.textContent = 'Relative Humidity (%): ';
                     projectedInfo.id = 'projectedHum';
                 }
+                else {
+                h5.textContent = "UV Index: "
+                projectedInfo.className = uvIndex(data);
+                projectedInfo.id = "uvindex";
+            }
             sectionTodaysForecast.appendChild(h5);
             h5.appendChild(projectedInfo);
         }
 };
 
 let currentForecast = function(location, data) {
-    let city = document.querySelector('#city');
     let temp = document.querySelector('#projectedTemp');
     let wind = document.querySelector('#projectedWind');
     let humidity = document.querySelector('#projectedHum');
 
     let inset = document.querySelector('#inset');
 
-    //city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
-    //inset.src = insertInset(data);
-    //temp.textContent = data.present.temp + '°F';
-    //wind.textContent = data.present.speed + ' mph';
-    //humidity.textContent = data.present.humidity + '%';
+    inset.src = insertInset(data);
+    temp.textContent = data.present.temp + '°F';
+    wind.textContent = data.present.speed + ' mph';
+    humidity.textContent = data.present.humidity + '%';
 };
 
 
