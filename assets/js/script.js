@@ -1,13 +1,13 @@
 let getCurrentForecast = function(data, i) {
     let projTemp = document.querySelectorAll('#projectedTemp');
     let recentTemp = projTemp[projTemp.length - 1];
-    recentTemp.textContent = data.daily[i].temp.day + "°F";
-    let projWind = document.querySelectorAll("#projectedWind");
+    recentTemp.textContent = data.daily[i].temp.day + ' °F';
+    let projWind = document.querySelectorAll('#projectedWind');
     let recentWind = projWind[projWind.length - 1];
-    recentWind.textContent = data.daily[i].wind_speed + "mph";
-    let projHum = document.querySelectorAll("#projectedHum");
+    recentWind.textContent = data.daily[i].wind_speed + ' mph';
+    let projHum = document.querySelectorAll('#projectedHum');
     let recentHum = projHum[projHum.length - 1];
-    recentHum.textContent = data.daily[i].humidity + "%";
+    recentHum.textContent = data.daily[i].humidity + '%';
 };
 
 let insertInset = function(data, i) {
@@ -27,11 +27,11 @@ let getProjectedForecast = function(data) {
     else {
         let results = document.querySelector('#results');
         let forecastInfo = document.createElement('div');
-        forecastInfo.id= 'projeectedForecast';
+        forecastInfo.id= 'projectedForecast';
         results.appendChild(forecastInfo);   
         for(let i = 0; i < 5; i++) {
             let weatherByDay = document.createElement('div');
-            weatherByDay.classList = '';
+            weatherByDay.classList = 'placeholder';
             forecastInfo.appendChild(weatherByDay);
 
             let nextWeek = document.createElement('h3');
@@ -91,7 +91,7 @@ let getForecastSections = function(data) {
     sectionTodaysForecast.appendChild(sectionHeader);
 
     let sectionTitle = document.createElement('h1');
-    sectionTitle.id = 'city';
+    sectionTitle.id = 'location';
     let weatherInset = document.createElement('img');
     weatherInset.id = 'inset';
     sectionHeader.appendChild(sectionTitle);
@@ -107,20 +107,20 @@ let getForecastSections = function(data) {
             let projectedInfo = document.createElement('div');
                 if(i < 1) {
                     h5.textContent =  'Temperature: ';
-                    projectedInfo.id = 'projectedTemp';
+                    projectedInfo.id = 'temp';
                 } 
                 else if(i == 1) {
                     h5.textContent = 'Wind Speed: ';
-                    projectedInfo.id = 'projectedWind';
+                    projectedInfo.id = 'wind';
                 }
                 else if(i == 2)  {
                     h5.textContent = 'Relative Humidity (%): ';
-                    projectedInfo.id = 'projectedHum';
+                    projectedInfo.id = 'humid';
                 }
                 else {
-                h5.textContent = "UV Index: "
+                h5.textContent = 'UV Index: '
                 projectedInfo.className = uvIndex(data);
-                projectedInfo.id = "uvindex";
+                projectedInfo.id = 'uvindex';
             }
             sectionTodaysForecast.appendChild(h5);
             h5.appendChild(projectedInfo);
@@ -128,30 +128,34 @@ let getForecastSections = function(data) {
 };
 
 let currentForecast = function(location, data) {
-    let temp = document.querySelector('#projectedTemp');
-    let wind = document.querySelector('#projectedWind');
-    let humidity = document.querySelector('#projectedHum');
+    let city = document.querySelector('#location');
+    let temp = document.querySelector('#temp');
+    let wind = document.querySelector('#wind');
+    let humidity = document.querySelector('#humid');
+    let uvi = document.querySelector("#uvindex");
 
-    let inset = document.querySelector('#inset');
+    //let inset = document.querySelector('#inset');
 
-    inset.src = insertInset(data);
+    city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
+    //inset.src = insertInset(data);
     temp.textContent = data.present.temp + '°F';
-    wind.textContent = data.present.speed + ' mph';
-    humidity.textContent = data.present.humidity + '%';
+    wind.textContent = data.present.wind + ' mph';
+    humidity.textContent = data.present.humid + '%';
+    uvi.textContent = data.current.uvIndex;
 };
 
 
 
 let fetchError = function() {
-    let inputLocal = document.querySelector("#location");
-    inputLocal.value = "Data Retrieval Error, Please Try Again.";
+    let inputLocal = document.querySelector('#location');
+    inputLocal.value = 'Data Retrieval Error, Please Try Again.';
 }; 
 
 
 let cityLatLong = function(location, data) {
     let lat = data.coord.lat;
     let lon = data.coord.lon;
-    let apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b";
+    let apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b';
 
 
     fetch(apiURL).then(function(response) {
@@ -168,7 +172,7 @@ let cityLatLong = function(location, data) {
 };
 
 let getStartupInfo = function(location) {
-    let apiURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b";
+    let apiURL2 = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b';
     fetch(apiURL2).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
@@ -183,7 +187,7 @@ let getStartupInfo = function(location) {
 
 let submitAPI = function(event) {
     event.preventDefault();
-    let location = document.querySelector("#location").value;
+    let location = document.querySelector('#location').value;
     getStartupInfo(location);
 };
 
