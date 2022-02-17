@@ -60,6 +60,31 @@ section {
     border-bottom: 4px solid black;
 }
 
+/*Forecast Cards styles*/
+#results {
+    margin: 30px 100px;
+
+}
+#projectedForecast {
+    color: purple;
+    width: 100%;
+}
+.placeholder {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: purple;
+    width: 100%;
+    border: 7px solid palegoldenrod;
+    text-align: center;
+}
+#projectedForecast h4 {
+    color: purple;
+    width: 100%;
+    border: 3px solid palegoldenrod;
+    text-align: center;
+    justify-content: center;
+}
+
 
 
 

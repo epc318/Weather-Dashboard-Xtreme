@@ -106,19 +106,19 @@ let getForecastSections = function(data) {
             let h5 = document.createElement('h5');
             let projectedInfo = document.createElement('div');
                 if(i < 1) {
-                    h5.textContent =  'Temperature:';
+                    h5.textContent =  'Temperature: ';
                     projectedInfo.id = 'temp';
                 } 
                 else if(i == 1) {
-                    h5.textContent = 'Wind Speed:';
+                    h5.textContent = 'Wind Speed: ';
                     projectedInfo.id = 'wind';
                 }
                 else if(i == 2)  {
-                    h5.textContent = 'Relative Humidity (%):';
+                    h5.textContent = 'Relative Humidity (%): ';
                     projectedInfo.id = 'humid';
                 }
                 else {
-                h5.textContent = 'UV Index:'
+                h5.textContent = 'UV Index: '
                 projectedInfo.className = uvIndex(data);
                 projectedInfo.id = 'uvindex';
             }
@@ -134,7 +134,7 @@ let currentForecast = function(location, data) {
     let humidity = document.querySelector('#humid');
     let uvi = document.querySelector("#uvindex");
 
-    let inset = document.querySelector('#inset');
+    //let inset = document.querySelector('#inset');
 
     city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
     //inset.src = insertInset(data);
