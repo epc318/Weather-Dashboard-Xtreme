@@ -60,6 +60,15 @@ section {
     border-bottom: 4px solid black;
 }
 
+/*Todays Forecast styles*/
+#todaysForecast {
+margin-top: 15px;
+margin-bottom: 10px;
+color: purple;
+width: 300%;
+border: 10px solid goldenrod;
+}
+
 /*Forecast Cards styles*/
 #results {
     margin: 30px 100px;
@@ -74,7 +83,7 @@ section {
     margin-bottom: 10px;
     color: purple;
     width: 100%;
-    border: 7px solid goldenrod;
+    border: 7px solid palegoldenrod;
     text-align: center;
 }
 #projectedForecast h4 {
