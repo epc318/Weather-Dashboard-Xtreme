@@ -140,7 +140,7 @@ let currentForecast = function(location, data) {
 
     let inset = document.querySelector('#inset');
 
-    city.textContent = location
+    city.textContent = location.charAt(0).toUpperCase()+location.slice(1);
     inset.src = insertInset(data);
     temp.textContent = data.current.temp + '°F';
     wind.textContent = data.current.wind_speed + ' mph';
