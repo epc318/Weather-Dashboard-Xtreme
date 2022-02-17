@@ -71,6 +71,14 @@ width: 300%;
 border: 10px solid goldenrod;
 }
 
+#todaysForecast h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: purple;
+    width: 100%;
+    border-top: 6px solid goldenrod;
+    }
+
 /*Forecast Cards styles*/
 #results {
     margin: 30px 100px;
