@@ -22,10 +22,10 @@
 Visit the application [HERE](https://epc318.github.io/Weather-Dashboard-Xtreme/)
 
 ## Deployed Application Screenshot
-![Full page screenshot](assets/images/)
+![Full page screenshot](assets/images/full_page_screenshot.PNG)
 
 ## Source Code Screenshot
-![Full page screenshot](assets/images/)
+![Full page screenshot](assets/images/source_code_ex.png)
 
 ## Contributions
 - This project was made by Evan Carlson and contains references and material learned in the University of Minnesota Web Dev Bootcamp.
