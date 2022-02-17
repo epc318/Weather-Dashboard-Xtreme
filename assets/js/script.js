@@ -91,7 +91,7 @@ let getForecastSections = function(data) {
     sectionTodaysForecast.appendChild(sectionHeader);
 
     let sectionTitle = document.createElement('h1');
-    sectionTitle.id = 'location';
+    sectionTitle.id = 'city';
     let weatherInset = document.createElement('img');
     weatherInset.id = 'inset';
     sectionHeader.appendChild(sectionTitle);
@@ -132,7 +132,7 @@ let currentForecast = function(location, data) {
     if(cards.children.length < 1) {
         getForecastSections(data);
     }
-    let city = document.querySelector('#location');
+    let city = document.querySelector('#city');
     let temp = document.querySelector('#temp');
     let wind = document.querySelector('#wind');
     let humidity = document.querySelector('#humid');
@@ -140,7 +140,7 @@ let currentForecast = function(location, data) {
 
     let inset = document.querySelector('#inset');
 
-    city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
+    city.textContent = location
     inset.src = insertInset(data);
     temp.textContent = data.current.temp + '°F';
     wind.textContent = data.current.wind_speed + ' mph';
