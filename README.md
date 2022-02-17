@@ -1,4 +1,4 @@
-# Weather Dashboard X-reme
+# Weather Dashboard X-treme
   
 ## Description
 A simple application that allows the user to check the current weather, as well as the 5-day forecast, for any city.
@@ -31,7 +31,7 @@ Visit the application [HERE](https://epc318.github.io/Weather-Dashboard-Xtreme/)
 
 ## Contributions
 - This project was made by Evan Carlson and contains references and material learned in the University of Minnesota Web Dev Bootcamp.
-- This project also uses live data from the [OpenWeather Api Service](https://openweathermap.org/)
+- This project also uses live data from the [OpenWeather API Service](https://openweathermap.org/)
 
 No Outside Contributions are being accepted at this time.
 

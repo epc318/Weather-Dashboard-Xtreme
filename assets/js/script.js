@@ -1,3 +1,4 @@
+// function for getting and formating current forecast from API
 let getCurrentForecast = function(data, i) {
     let projTemp = document.querySelectorAll('#projectedTemp');
     let recentTemp = projTemp[projTemp.length - 1];
@@ -10,6 +11,7 @@ let getCurrentForecast = function(data, i) {
     recentHum.textContent = data.daily[i].humidity + '%';
 };
 
+// function for getting weather picture inset and formatting URL for proper display
 let insertInset = function(data, i) {
     if(!i) {i = 0;};
     let insetID = data.daily[i].weather[0].icon;
@@ -18,6 +20,7 @@ let insertInset = function(data, i) {
     return insetURL;
 };
 
+// function for getting ProjectForecast data and formatting it to HTML
 let getProjectedForecast = function(data) {
     let ask = document.querySelector('#projectedForecast');
     if(ask) {
@@ -30,15 +33,18 @@ let getProjectedForecast = function(data) {
         forecastInfo.id= 'projectedForecast';
         results.appendChild(forecastInfo);   
         for(let i = 0; i < 5; i++) {
+            //weather  day cards/info
             let weatherByDay = document.createElement('div');
             weatherByDay.classList = 'placeholder';
             forecastInfo.appendChild(weatherByDay);
 
+            //next 5 days
             let nextWeek = document.createElement('h3');
             nextWeek.id = 'next5Days';
             nextWeek.textContent = moment().add(i + 1,'days').format('dddd, MMMM Do, YYYY');
             weatherByDay.appendChild(nextWeek);
 
+            //weather inset picture for project forecast
             let weatherInset = document.createElement('img');
             weatherInset.src = insertInset(data, i);
             weatherByDay.appendChild(weatherInset);
@@ -65,6 +71,7 @@ let getProjectedForecast = function(data) {
     }       
 };
 
+// function for getting and formatting UV Index data for current forecast
 let uvIndex = function(data) {
     let uvIndex = data.current.uvIndex;
     let index;
@@ -80,6 +87,7 @@ let uvIndex = function(data) {
     return index;
 };
 
+// function for getting current Forecast data and formatting it to HTML
 let getForecastSections = function(data) {
     let sectionDayCards = document.querySelector('#results');
     let sectionTodaysForecast = document.createElement('div');
@@ -127,6 +135,7 @@ let getForecastSections = function(data) {
         }
 };
 
+// calling current forecast data to format display
 let currentForecast = function(location, data) {
     let cards = document.querySelector("#results");
     if(cards.children.length < 1) {
@@ -150,12 +159,14 @@ let currentForecast = function(location, data) {
 
 
 
+//error display if user input is invalid
 let fetchError = function() {
     let inputLocal = document.querySelector('#location');
     inputLocal.value = 'Data Retrieval Error, Please Try Again.';
 }; 
 
 
+// get data from inputted city/location to call
 let cityLatLong = function(location, data) {
     let lat = data.coord.lat;
     let lon = data.coord.lon;
@@ -175,6 +186,7 @@ let cityLatLong = function(location, data) {
     })
 };
 
+// calling inputted city
 let getStartupInfo = function(location) {
     let apiURL2 = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b';
     fetch(apiURL2).then(function(response) {
@@ -189,6 +201,7 @@ let getStartupInfo = function(location) {
     }); 
 }
 
+// submit API call
 let submitAPI = function(event) {
     event.preventDefault();
     let location = document.querySelector('#location').value;
