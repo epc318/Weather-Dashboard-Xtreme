@@ -4,10 +4,10 @@ let getCurrentForecast = function(data, i) {
     recentTemp.textContent = data.daily[i].temp.day + ' °F';
     let projWind = document.querySelectorAll('#projectedWind');
     let recentWind = projWind[projWind.length - 1];
-    recentWind.textContent = data.daily[i].wind_speed + ' mph';
+    recentWind.textContent = data.daily[i].wind + ' mph';
     let projHum = document.querySelectorAll('#projectedHum');
     let recentHum = projHum[projHum.length - 1];
-    recentHum.textContent = data.daily[i].humidity + '%';
+    recentHum.textContent = data.daily[i].humid + '%';
 };
 
 let insertInset = function(data, i) {
@@ -142,9 +142,9 @@ let currentForecast = function(location, data) {
 
     city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
     inset.src = insertInset(data);
-    temp.textContent = data.present.temp + '°F';
-    wind.textContent = data.present.wind + ' mph';
-    humidity.textContent = data.present.humid + '%';
+    temp.textContent = data.current.temp + '°F';
+    wind.textContent = data.current.wind + ' mph';
+    humidity.textContent = data.current.humid + '%';
     uvi.textContent = data.current.uvIndex;
 };
 
