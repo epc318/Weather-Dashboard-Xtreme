@@ -12,7 +12,7 @@ let getCurrentForecast = function(data, i) {
 
 let insertInset = function(data, i) {
     if(!i) {i = 0;};
-    let insetID = data.daily[i].weather[0].inset;
+    let insetID = data.daily[i].weather[0].icon;
     let insetURL = 'https://openweathermap.org/img/w/' + insetID + '.png';
 
     return insetURL;
@@ -36,7 +36,7 @@ let getProjectedForecast = function(data) {
 
             let nextWeek = document.createElement('h3');
             nextWeek.id = 'next5Days';
-            nextWeek.textContent = moment().add(i + 1).format('dddd, MMMM Do YYYY,');
+            nextWeek.textContent = moment().add(i + 1,'days').format('dddd, MMMM Do YYYY');
             weatherByDay.appendChild(nextWeek);
 
             let weatherInset = document.createElement('img');
@@ -106,19 +106,19 @@ let getForecastSections = function(data) {
             let h5 = document.createElement('h5');
             let projectedInfo = document.createElement('div');
                 if(i < 1) {
-                    h5.textContent =  'Temperature: ';
+                    h5.textContent =  'Temperature:';
                     projectedInfo.id = 'temp';
                 } 
                 else if(i == 1) {
-                    h5.textContent = 'Wind Speed: ';
+                    h5.textContent = 'Wind Speed:';
                     projectedInfo.id = 'wind';
                 }
                 else if(i == 2)  {
-                    h5.textContent = 'Relative Humidity (%): ';
+                    h5.textContent = 'Relative Humidity (%):';
                     projectedInfo.id = 'humid';
                 }
                 else {
-                h5.textContent = 'UV Index: '
+                h5.textContent = 'UV Index:'
                 projectedInfo.className = uvIndex(data);
                 projectedInfo.id = 'uvindex';
             }
@@ -134,14 +134,14 @@ let currentForecast = function(location, data) {
     let humidity = document.querySelector('#humid');
     let uvi = document.querySelector("#uvindex");
 
-    //let inset = document.querySelector('#inset');
+    let inset = document.querySelector('#inset');
 
     city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
     //inset.src = insertInset(data);
-    temp.textContent = data.present.temp + '°F';
-    wind.textContent = data.present.wind + ' mph';
-    humidity.textContent = data.present.humid + '%';
-    uvi.textContent = data.current.uvIndex;
+    //temp.textContent = data.present.temp + '°F';
+    //wind.textContent = data.present.wind + ' mph';
+    //humidity.textContent = data.present.humid + '%';
+    //uvi.textContent = data.current.uvIndex;
 };
 
 
