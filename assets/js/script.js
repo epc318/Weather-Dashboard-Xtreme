@@ -128,14 +128,14 @@ let fetchError = function() {
 let cityLatLong = function(location, data) {
     let lat = data.coord.lat;
     let long = data.coord.long;
-    let apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='
-    +long+'&exclude=minutely,hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b';
+    let apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b";
+
 
     fetch(apiURL).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
                 currentForecast(location, data);
-                getForecastSections(data);
+                getProjectForecast(data);
             })
         }
         else {
@@ -145,7 +145,7 @@ let cityLatLong = function(location, data) {
 };
 
 let getStartupInfo = function(location) {
-    let apiURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=198d07e9a046131e4583b2665e1187a0";
+    let apiURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b";
     fetch(apiURL2).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
