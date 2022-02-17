@@ -128,20 +128,24 @@ let getForecastSections = function(data) {
 };
 
 let currentForecast = function(location, data) {
+    let cards = document.querySelector("#results");
+    if(cards.children.length < 1) {
+        getForecastSections(data);
+    }
     let city = document.querySelector('#location');
     let temp = document.querySelector('#temp');
     let wind = document.querySelector('#wind');
     let humidity = document.querySelector('#humid');
     let uvi = document.querySelector("#uvindex");
 
-    //let inset = document.querySelector('#inset');
+    let inset = document.querySelector('#inset');
 
     city.textContent = location.charAt(0).toUpperCase() + location.slice(1);
-    //inset.src = insertInset(data);
-    //temp.textContent = data.present.temp + '°F';
-    //wind.textContent = data.present.wind + ' mph';
-    //humidity.textContent = data.present.humid + '%';
-    //uvi.textContent = data.current.uvIndex;
+    inset.src = insertInset(data);
+    temp.textContent = data.present.temp + '°F';
+    wind.textContent = data.present.wind + ' mph';
+    humidity.textContent = data.present.humid + '%';
+    uvi.textContent = data.current.uvIndex;
 };
 
 
