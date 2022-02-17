@@ -111,7 +111,7 @@ let currentForecast = function(location, data) {
     let inset = document.querySelector('#inset');
 
     city.textContent = location;
-    inset.src = insetURL
+    inset.src = insertInset
     temp.textContent = data.present.temp + '°F';
     wind.textContent = data.present.speed + 'mph';
     humidity.textContent = data.present.humidity + '%';
@@ -127,8 +127,8 @@ let fetchError = function() {
 
 let cityLatLong = function(location, data) {
     let lat = data.coord.lat;
-    let long = data.coord.long;
-    let apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b";
+    let lon = data.coord.lon;
+    let apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly&units=imperial&appid=bc541e0acdc6372acb78d3865f34ac3b";
 
 
     fetch(apiURL).then(function(response) {
